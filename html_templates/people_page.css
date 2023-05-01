@@ -1,0 +1,22 @@
+@charset "UTF-8";
+/* Блоки */
+.description {
+  background-color: #edf7ff; }
+
+.people {
+  background-color: white; }
+
+.pearson {
+  border: 2px solid green;
+  border-radius: 10px;
+  cursor: pointer; }
+  .pearson__photo {
+    width: 100%;
+    height: auto;
+    border-radius: 15px; }
+
+.pearson--active {
+  border: 2px solid red;
+  border-radius: 10px; }
+
+/*# sourceMappingURL=people_page.css.map */
