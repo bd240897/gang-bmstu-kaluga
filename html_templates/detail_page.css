@@ -1,0 +1,12 @@
+@charset "UTF-8";
+/* Блоки */
+.detail {
+  background-color: #edf7ff; }
+  .detail__photo img {
+    margin: auto 0;
+    width: 100%;
+    max-width: 800px;
+    height: auto;
+    border-radius: 15px; }
+
+/*# sourceMappingURL=detail_page.css.map */
