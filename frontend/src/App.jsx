@@ -8,6 +8,12 @@ import Footer from "./components/Footer";
 import DetailPeoplePage from "./pages/DetailPeoplePage";
 import TestPage from "./pages/TestPage";
 import Content from "./components/Content";
+import Home from "./pages/Home/Home";
+import Register from "./pages/Register";
+import Login from "./pages/Login";
+
+import PrivateRoute from "./pages/PrivateRoute";
+import {AuthProvider} from "./context/AuthContext";
 
 function App() {
 
@@ -22,14 +28,23 @@ function App() {
     }
 
     return (
-        <div className="App">
+        <AuthProvider>
+            <div className="App">
             <Header/>
             <Content>
                 <Routes>
-                    <Route path="/" element={<MainPage/>}/>
-                    <Route path="/people" element={<PeoplePage/>}/>
-                    <Route path="/people/:id" element={<DetailPeoplePage/>}/>
-                    <Route path="/test" element={<TestPage/>}/>
+                    {/*<Route path="/" element={<MainPage/>}/>*/}
+                    {/*<Route path="/people" element={<PeoplePage/>}/>*/}
+                    {/*<Route path="/people/:id" element={<DetailPeoplePage/>}/>*/}
+                    {/*<Route path="/test" element={<TestPage/>}/>*/}
+                    // TODO delete test
+                    <Route path='/' element={<Login />} />
+                    <Route path='/register' element={<Register />} />
+                    <Route path='/home' element={
+                        <PrivateRoute>
+                            <Home />
+                        </PrivateRoute>
+                    } />
                 </Routes>
                 <button type="button" onClick={handleClick}>
                     Go home
@@ -62,6 +77,7 @@ function App() {
             </Content>
             <Footer/>
         </div>
+        </AuthProvider>
     )
 }
 

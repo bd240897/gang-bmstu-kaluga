@@ -1,5 +1,5 @@
 import React, {FC, useCallback, useEffect, useState} from "react";
-import {auth} from "../firebase";
+// import {auth} from "../firebase";
 import {
     createUserWithEmailAndPassword,
     signInWithEmailAndPassword,
@@ -20,22 +20,22 @@ function TestPage() {
     const [user, setUser] = useState(null);
 
     const createUser = () =>{
-        createUserWithEmailAndPassword(
-            auth,
-            "5@gmail.ru",
-            "1234qwerS+"
-        ).then((user)=>console.log(user));
+        // createUserWithEmailAndPassword(
+        //     auth,
+        //     "5@gmail.ru",
+        //     "1234qwerS+"
+        // ).then((user)=>console.log(user));
     }
 
 
     const login = async () => {
-        const {user} = await signInWithEmailAndPassword(
-            auth,
-            "1@gmail.ru",
-            "1234qwerS+"
-        );
-        console.log(user)
-        setUser(user);
+        // const {user} = await signInWithEmailAndPassword(
+        //     auth,
+        //     "1@gmail.ru",
+        //     "1234qwerS+"
+        // );
+        // console.log(user)
+        // setUser(user);
     }
 
 

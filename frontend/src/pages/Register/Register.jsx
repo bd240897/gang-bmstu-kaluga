@@ -1,9 +1,14 @@
-import React, { useState } from 'react';
+import React, {useState} from 'react';
+import {useNavigate} from 'react-router-dom';
+import { doc, setDoc, Timestamp } from 'firebase/firestore';
+import { registerUser, db } from '../../configs/firebase';
 
 const Register = () => {
 
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
+
+    const navigate = useNavigate();
 
     const handleEmail = event => {
         setEmail(event.target.value);
@@ -13,8 +18,38 @@ const Register = () => {
         setPassword(event.target.value);
     };
 
+    // const handleRegister = () => {
+    //     registerUser(email, password)
+    //         .then((userCredential) => {
+    //             alert('User created successfully!')
+    //         })
+    //         .catch((error) => {
+    //             alert('Something went wrong!')
+    //             const errorCode = error.code;
+    //             console.log(errorCode);
+    //         });
+    // }
+
+
+    const handleRegister = () => {
+        registerUser(email, password)
+            .then((userCredential) => {
+                const user = userCredential.user
+                setDoc(doc(db, 'users', user.uid), {
+                    email: email,
+                    registeredAt: Timestamp.fromDate(new Date()),
+                });
+                alert('User created successfully!')
+            })
+            .catch((error) => {
+                alert('Something went wrong!');
+                const errorCode = error.code;
+                console.log(errorCode);
+            });
+    }
+
     return (
-        <div style={{ textAlign: 'center' }}>
+        <div style={{textAlign: 'center'}}>
             <div>
                 <h3>Register</h3>
             </div>
@@ -33,13 +68,17 @@ const Register = () => {
                     placeholder="Type your password"
                 />
             </div>
-            <button>
+            <button onClick={handleRegister}>
                 Submit
             </button>
-            <div style={{ fontSize: '12px' }}>
-                Already have an account?
-                {' '}
-                Please <span style={{ color: '#293462', fontWeight: 'bold' }}>sign in</span>
+            <div style={{fontSize: '12px'}}>
+                Already have an account? Please {' '}
+                <span
+                    onClick={() => navigate('/')}
+                    style={{color: '#293462', fontWeight: 'bold', cursor: 'pointer'}}
+                >
+                    sign in
+                </span>
             </div>
         </div>
     );

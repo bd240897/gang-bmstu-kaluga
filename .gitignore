@@ -23,3 +23,4 @@ yarn-debug.log*
 yarn-error.log*
 /frontend/node_modules/
 /test_polygon/node_modules/
+/frontend/.env
