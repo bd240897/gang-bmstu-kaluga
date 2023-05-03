@@ -15,10 +15,9 @@ import {
 import { toast } from "react-toastify";
 
 const initialState = {
-  title: "",
-  tags: [],
-  trending: "no",
-  category: "",
+  firstName: "",
+  lastName: "",
+  year: "",
   description: "",
   comments: [],
   likes: []
@@ -26,31 +25,33 @@ const initialState = {
 
 // TODO capitan / partisipant
 const categoryOption = [
-  "Fashion",
-  "Technology",
-  "Food",
-  "Politics",
-  "Sports",
-  "Business",
+  "Капитан",
+  "Участник",
 ];
 
 const AddEditBlog = ({ user, setActive }) => {
 
   // хранит данные формы
   const [form, setForm] = useState(initialState);
-  // хранит путь до загруженного файла
-  const [file, setFile] = useState(null);
+
   // проверяет прогресс загрузки файла
   const [progress, setProgress] = useState(null);
 
+  // сам путь до файла
+  const [file, setFile] = useState(null);
+
   // TODO unused
-  const { id } = useParams();
+  // const { id } = useParams();
 
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
 
-  const { title, tags, category, trending, description } = form;
+  // распакуем стейт для удобства
+  // TODO category!!!!!!!!!!!!!!!!!!!! lost it
+  const { firstName, lastName, year, comments, description, likes} = form;
 
   useEffect(() => {
+
+    // TODO simple an вынести
     const uploadFile = () => {
       const storageRef = ref(storage, file.name);
       // что это за функция?
@@ -92,133 +93,99 @@ const AddEditBlog = ({ user, setActive }) => {
     file && uploadFile();
   }, [file]);
 
-  useEffect(() => {
-    id && getBlogDetail();
-  }, [id]);
 
-  const getBlogDetail = async () => {
-    const docRef = doc(db, "blogs", id);
-    const snapshot = await getDoc(docRef);
-    if (snapshot.exists()) {
-      setForm({ ...snapshot.data() });
-    }
-    setActive(null);
-  };
-
-  const handleChange = (e) => {
+  // дли обычных полей
+  const handleInputChange = (e) => {
     setForm({ ...form, [e.target.name]: e.target.value });
   };
 
-  const handleTags = (tags) => {
-    setForm({ ...form, tags });
-  };
-
-  const handleTrending = (e) => {
-    setForm({ ...form, trending: e.target.value });
-  };
-
+  // для котегории
+  // TODO мб можно обойтись одним???
   const onCategoryChange = (e) => {
     setForm({ ...form, category: e.target.value });
   };
 
+  // отправка формы
   const handleSubmit = async (e) => {
+
     e.preventDefault();
-    if (category && tags && title && description && trending) {
-      if (!id) {
-        try {
-          await addDoc(collection(db, "blogs"), {
-            ...form,
-            timestamp: serverTimestamp(),
-            // todo
-            // author: user.displayName,
-            // userId: user.uid,
-          });
-          toast.success("Blog created successfully");
-        } catch (err) {
-          console.log(err);
-        }
-      } else {
-        try {
-          await updateDoc(doc(db, "blogs", id), {
-            ...form,
-            timestamp: serverTimestamp(),
-            author: user.displayName,
-            userId: user.uid,
-          });
-          toast.success("Blog updated successfully");
-        } catch (err) {
-          console.log(err);
-        }
+
+    console.log(form)
+
+    // TOTO uncommit
+    if (firstName && lastName) { // TODO category && tags && title && description && trending
+      try
+      {
+        await addDoc(collection(db, "blogs"), {
+          ...form,
+          timestamp: serverTimestamp(),
+
+          // TODO clean to made
+          // author: user.displayName,
+          // userId: user.uid,
+        });
+        toast.success("Blog created successfully");
       }
-    } else {
-      return toast.error("All fields are mandatory to fill");
+      catch (err)
+      {
+        console.log(err);
+        toast.error("Возмозжно вы не заполнили все поля");
+      }
     }
 
+    // TODO used or delete
     // navigate("/");
   };
 
   return (
     <div className="container-fluid mb-4">
       <div className="container">
-        <div className="col-12">
-          <div className="text-center heading py-2">
-            {id ? "Update Blog" : "Create Blog"}
-          </div>
-        </div>
+
         <div className="row h-100 justify-content-center align-items-center">
           <div className="col-10 col-md-8 col-lg-6">
+
             <form className="row blog-form" onSubmit={handleSubmit}>
               <div className="col-12 py-3">
                 <input
                   type="text"
                   className="form-control input-text-box"
-                  placeholder="Title"
-                  name="title"
-                  value={title}
-                  onChange={handleChange}
+                  placeholder="firstName"
+                  name="firstName"
+                  value={firstName}
+                  onChange={handleInputChange}
                 />
               </div>
+
               <div className="col-12 py-3">
-                <ReactTagInput
-                  tags={tags}
-                  placeholder="Tags"
-                  onChange={handleTags}
+                <input
+                    type="text"
+                    className="form-control input-text-box"
+                    placeholder="lastName"
+                    name="lastName"
+                    value={lastName}
+                    onChange={handleInputChange}
                 />
               </div>
+
               <div className="col-12 py-3">
-                <p className="trending">Is it trending blog ?</p>
-                <div className="form-check-inline mx-2">
-                  <input
-                    type="radio"
-                    className="form-check-input"
-                    value="yes"
-                    name="radioOption"
-                    checked={trending === "yes"}
-                    onChange={handleTrending}
-                  />
-                  <label htmlFor="radioOption" className="form-check-label">
-                    Yes&nbsp;
-                  </label>
-                  <input
-                    type="radio"
-                    className="form-check-input"
-                    value="no"
-                    name="radioOption"
-                    checked={trending === "no"}
-                    onChange={handleTrending}
-                  />
-                  <label htmlFor="radioOption" className="form-check-label">
-                    No
-                  </label>
-                </div>
+                <input
+                    type="text"
+                    className="form-control input-text-box"
+                    placeholder="year"
+                    name="year"
+                    value={year}
+                    onChange={handleInputChange}
+                />
               </div>
+
+
               <div className="col-12 py-3">
                 <select
-                  value={category}
+                  // value={category}
                   onChange={onCategoryChange}
                   className="catg-dropdown"
                 >
-                  <option>Please select category</option>
+                  <option>Выбирите категорию участника </option>
                   {categoryOption.map((option, index) => (
                     <option value={option || ""} key={index}>
                       {option}
@@ -226,15 +193,17 @@ const AddEditBlog = ({ user, setActive }) => {
                   ))}
                 </select>
               </div>
+
               <div className="col-12 py-3">
                 <textarea
                   className="form-control description-box"
                   placeholder="Description"
                   value={description}
                   name="description"
-                  onChange={handleChange}
+                  onChange={handleInputChange}
                 />
               </div>
+
               <div className="mb-3">
                 <input
                   type="file"
@@ -242,15 +211,17 @@ const AddEditBlog = ({ user, setActive }) => {
                   onChange={(e) => setFile(e.target.files[0])}
                 />
               </div>
+
               <div className="col-12 py-3 text-center">
                 <button
-                  className="btn btn-add"
+                  className="btn btn-add btn-success"
                   type="submit"
                   disabled={progress !== null && progress < 100}
                 >
-                  {id ? "Update" : "Submit"}
+                  Отправить
                 </button>
               </div>
+
             </form>
           </div>
         </div>
