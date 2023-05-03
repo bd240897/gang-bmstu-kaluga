@@ -14,6 +14,11 @@ import Login from "./pages/Login";
 
 import PrivateRoute from "./pages/PrivateRoute";
 import {AuthProvider} from "./context/AuthContext";
+import SendFilePage from "./pages/SendFilePage";
+import AddPearson from "./pages/AddPearson";
+import NotFoundPage from "./pages/NotFoundPage";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 function App() {
 
@@ -32,19 +37,24 @@ function App() {
             <div className="App">
             <Header/>
             <Content>
+                <ToastContainer position="top-center" />
                 <Routes>
                     {/*<Route path="/" element={<MainPage/>}/>*/}
-                    {/*<Route path="/people" element={<PeoplePage/>}/>*/}
+                    <Route path="/people" element={<PeoplePage/>}/>
                     {/*<Route path="/people/:id" element={<DetailPeoplePage/>}/>*/}
                     {/*<Route path="/test" element={<TestPage/>}/>*/}
                     // TODO delete test
                     <Route path='/' element={<Login />} />
                     <Route path='/register' element={<Register />} />
+                    <Route path='/send' element={<SendFilePage />} />
+                    <Route path='/add' element={<AddPearson />} />
+
                     <Route path='/home' element={
                         <PrivateRoute>
                             <Home />
                         </PrivateRoute>
                     } />
+                    <Route element={<NotFoundPage />}/>
                 </Routes>
                 <button type="button" onClick={handleClick}>
                     Go home

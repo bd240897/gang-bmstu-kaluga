@@ -4,6 +4,7 @@ import { getAnalytics } from "firebase/analytics";
 import { getFirestore } from "firebase/firestore";
 import { getStorage } from "firebase/storage";
 import { doc, setDoc, Timestamp } from 'firebase/firestore';
+import 'firebase/storage';
 import {
   getAuth,
   createUserWithEmailAndPassword,
