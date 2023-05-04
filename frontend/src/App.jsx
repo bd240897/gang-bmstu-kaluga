@@ -1,7 +1,6 @@
 import './App.css';
 import './style.sass';
 import MainPage from "./pages/MainPage";
-import PeoplePage from "./pages/PeoplePage";
 import {NavLink, Route, Routes, useNavigate} from "react-router-dom"
 import Header from "./components/Header";
 import Footer from "./components/Footer";
@@ -19,6 +18,7 @@ import AddPearson from "./pages/AddPearson";
 import NotFoundPage from "./pages/NotFoundPage";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import PeoplePage from "./pages/PeoplePage/PeoplePage";
 
 function App() {
 
