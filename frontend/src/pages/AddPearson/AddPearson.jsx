@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from "react";
+// TODO delete это кастомное поле для тегов
 import ReactTagInput from "@pathofdev/react-tag-input";
 import "@pathofdev/react-tag-input/build/index.css";
-import {  db, storage } from '../configs/firebase';
+import {  db, storage } from '../../configs/firebase';
 import { useNavigate, useParams } from "react-router-dom";
 import { getDownloadURL, ref, uploadBytesResumable } from "firebase/storage";
 import {
@@ -213,6 +214,7 @@ const AddEditBlog = ({ user, setActive }) => {
               </div>
 
               <div className="col-12 py-3 text-center">
+                {/* TODO block bytton if file not loaded*/}
                 <button
                   className="btn btn-add btn-success"
                   type="submit"

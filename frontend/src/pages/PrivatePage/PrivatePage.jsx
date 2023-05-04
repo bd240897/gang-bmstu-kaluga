@@ -4,7 +4,7 @@ import { logoutUser, db } from '../../configs/firebase';
 import { doc, getDoc } from 'firebase/firestore';
 import { AuthContext } from '../../context/AuthContext';
 
-const Home = () => {
+const PrivatePage = () => {
 
     const { currentUser } = useContext(AuthContext);
 
@@ -44,4 +44,4 @@ const Home = () => {
     );
 };
 
-export default Home;
+export default PrivatePage;

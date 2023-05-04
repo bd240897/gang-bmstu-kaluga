@@ -1,30 +1,29 @@
 import './App.css';
 import './style.sass';
-import MainPage from "./pages/MainPage";
-import {NavLink, Route, Routes, useNavigate} from "react-router-dom"
+import MainPage from "./pages/MainPage/MainPage";
+import {NavLink, Route, Routes, useNavigate, Navigate} from "react-router-dom"
 import Header from "./components/Header";
 import Footer from "./components/Footer";
-import DetailPeoplePage from "./pages/DetailPeoplePage";
+import DetailPeoplePage from "./pages/DetailPeoplePage/DetailPeoplePage";
 import TestPage from "./pages/TestPage";
 import Content from "./components/Content";
-import Home from "./pages/Home/Home";
+import PrivatePage from "./pages/PrivatePage/PrivatePage";
 import Register from "./pages/Register";
 import Login from "./pages/Login";
 
+import React, {useContext} from 'react';
 import PrivateRoute from "./pages/PrivateRoute";
-import {AuthProvider} from "./context/AuthContext";
-import SendFilePage from "./pages/SendFilePage";
-import AddPearson from "./pages/AddPearson";
+import {AuthContext, AuthProvider} from "./context/AuthContext";
+import AddPearson from "./pages/AddPearson/AddPearson";
 import NotFoundPage from "./pages/NotFoundPage";
-import { ToastContainer } from "react-toastify";
+import {ToastContainer} from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import PeoplePage from "./pages/PeoplePage/PeoplePage";
 
 function App() {
 
-    const renderMainPage = routeProps => (
-        <MainPage {...routeProps} />
-    );
+    // получим текущего юзера
+    const {currentUser} = useContext(AuthContext);
 
     const navigate = useNavigate();
 
@@ -33,29 +32,29 @@ function App() {
     }
 
     return (
-        <AuthProvider>
-            <div className="App">
+
+
+        <div className="App">
             <Header/>
             <Content>
-                <ToastContainer position="top-center" />
+                <ToastContainer position="top-center"/>
                 <Routes>
-                    {/*<Route path="/" element={<MainPage/>}/>*/}
+                    <Route path="/" element={<MainPage/>}/>
                     <Route path="/people" element={<PeoplePage/>}/>
-                    {/*<Route path="/people/:id" element={<DetailPeoplePage/>}/>*/}
-                    {/*<Route path="/test" element={<TestPage/>}/>*/}
-                    // TODO delete test
-                    <Route path='/' element={<Login />} />
-                    <Route path='/register' element={<Register />} />
-                    <Route path='/send' element={<SendFilePage />} />
-                    <Route path='/add' element={<AddPearson />} />
+                    <Route path="/people/:id" element={<DetailPeoplePage/>}/>
+                    <Route path='/login' element={<Login/>}/>
+                    <Route path='/register' element={<Register/>}/>
+                    <Route path='/add' element={<AddPearson/>}/>
+                    <Route path="/test" element={<TestPage/>}/>
 
                     <Route path='/home' element={
-                        <PrivateRoute>
-                            <Home />
-                        </PrivateRoute>
-                    } />
-                    <Route element={<NotFoundPage />}/>
+                        currentUser ? <PrivatePage /> : <Navigate to="/" />
+                    }
+                    />
+
+                    <Route element={<NotFoundPage/>}/>
                 </Routes>
+
                 <button type="button" onClick={handleClick}>
                     Go home
                 </button>
@@ -81,13 +80,11 @@ function App() {
                             Test
                         </NavLink>
                     </div>
-
-
                 </div>
             </Content>
             <Footer/>
         </div>
-        </AuthProvider>
+
     )
 }
 
