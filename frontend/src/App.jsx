@@ -15,18 +15,22 @@ import React, {useContext} from 'react';
 import {AuthContext, AuthProvider} from "./context/AuthContext";
 import AddPearson from "./pages/AddPearson/AddPearson";
 import NotFoundPage from "./pages/NotFoundPage";
-import {ToastContainer} from "react-toastify";
+import {toast, ToastContainer} from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import PeoplePage from "./pages/PeoplePage/PeoplePage";
+import NavigateError from "./components/NavigateError";
 
 function App() {
 
     // получим текущего юзера
     const {currentUser} = useContext(AuthContext);
 
+    const navigateToLogin = () => {
+        toast.info("Страница доступна только вошедшим пользователям");
+        return <Navigate to="/login" />
+    }
+
     return (
-
-
         <div className="App">
             <Header/>
             <Content>
@@ -41,11 +45,11 @@ function App() {
                     <Route path="/test" element={<TestPage/>}/>
 
                     <Route path='/private' element={
-                        currentUser ? <PrivatePage /> : <Navigate to="/login" />
+                        currentUser ? <PrivatePage /> : <NavigateError massage="Страница доступна только вошедшим пользователям" to="/login" />
                     }
                     />
 
-                    <Route element={<NotFoundPage/>}/>
+                    <Route path="*" element={<NotFoundPage/>}/>
                 </Routes>
             </Content>
             <Footer/>

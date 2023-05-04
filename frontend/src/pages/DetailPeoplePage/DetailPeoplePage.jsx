@@ -16,7 +16,7 @@ function DetailPeoplePage() {
             .then((response) => {
                 response.json().then(data => setPearson(data))
             })
-            .catch((e)=>console.log("error"))
+            .catch((data)=>console.log("error"))
     }
 
     useEffect(() => {

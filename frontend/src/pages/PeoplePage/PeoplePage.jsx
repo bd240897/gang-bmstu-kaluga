@@ -53,8 +53,8 @@ function PeoplePage() {
     };
 
     const fetchPeopleMock = () => {
-        const docSnapshot = fetch("http://localhost:3004/get-people").then((response) => {
-            response.json().then(e => setPeople(e))
+        fetch("http://localhost:3004/get-people").then((response) => {
+            response.json().then(data => setPeople(data))
         })
     }
 
@@ -94,6 +94,8 @@ function PeoplePage() {
                 </div>
             </section>
 
+
+            {/*TODO вынсти эту секцию в отдельный компонент!!!!*/}
             <section className="people pt-3 pb-3">
                 <div className="container">
                     <h2 className="people__header text-center mb-3">Наши участники</h2>
