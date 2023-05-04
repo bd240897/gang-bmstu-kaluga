@@ -10,14 +10,14 @@ export const AuthProvider = ({ children }) => {
     const auth = getAuth();
 
     useEffect(() => {
-        onAuthStateChanged(auth, (user) => {
-            if (user) {
-                const uid = user.uid;
-                setCurrentUser(uid);
-            } else {
-                setCurrentUser(null);
-            }
-        });
+        // onAuthStateChanged(auth, (user) => {
+        //     if (user) {
+        //         const uid = user.uid;
+        //         setCurrentUser(uid);
+        //     } else {
+        //         setCurrentUser(null);
+        //     }
+        // });
     }, []);
 
     return (

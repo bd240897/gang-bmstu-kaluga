@@ -1,0 +1,32 @@
+{
+  "get-people": [
+    {
+      "id": 1,
+      "firstName": "Dima",
+      "secondName": "Borisov",
+      "photo": "http://localhost:3004/starfield.png",
+      "year": 2020,
+      "level": "участник",
+      "description": "Играет на гитаре"
+    },
+    {
+      "id": 2,
+      "firstName": "Ivan",
+      "secondName": "Ivanov",
+      "photo": "http://localhost:3004/starfield.png",
+      "year": 2021,
+      "level": "участник",
+      "description": "Поет песни"
+    },
+    {
+      "id": 3,
+      "firstName": "Petr",
+      "secondName": "Petrov",
+      "photo": "http://localhost:3004/starfield.png",
+      "year": 2022,
+      "level": "капитан",
+      "description": "Пьет за троих"
+    }
+  ]
+}
+

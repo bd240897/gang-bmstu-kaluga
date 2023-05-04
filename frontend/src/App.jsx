@@ -12,7 +12,6 @@ import Register from "./pages/Register";
 import Login from "./pages/Login";
 
 import React, {useContext} from 'react';
-import PrivateRoute from "./pages/PrivateRoute";
 import {AuthContext, AuthProvider} from "./context/AuthContext";
 import AddPearson from "./pages/AddPearson/AddPearson";
 import NotFoundPage from "./pages/NotFoundPage";
@@ -25,12 +24,6 @@ function App() {
     // получим текущего юзера
     const {currentUser} = useContext(AuthContext);
 
-    const navigate = useNavigate();
-
-    function handleClick() {
-        navigate("/people");
-    }
-
     return (
 
 
@@ -41,46 +34,19 @@ function App() {
                 <Routes>
                     <Route path="/" element={<MainPage/>}/>
                     <Route path="/people" element={<PeoplePage/>}/>
-                    <Route path="/people/:id" element={<DetailPeoplePage/>}/>
+                    <Route path="/detail/:id" element={<DetailPeoplePage/>}/>
                     <Route path='/login' element={<Login/>}/>
                     <Route path='/register' element={<Register/>}/>
                     <Route path='/add' element={<AddPearson/>}/>
                     <Route path="/test" element={<TestPage/>}/>
 
-                    <Route path='/home' element={
-                        currentUser ? <PrivatePage /> : <Navigate to="/" />
+                    <Route path='/private' element={
+                        currentUser ? <PrivatePage /> : <Navigate to="/login" />
                     }
                     />
 
                     <Route element={<NotFoundPage/>}/>
                 </Routes>
-
-                <button type="button" onClick={handleClick}>
-                    Go home
-                </button>
-
-                <div className="admin-panel">
-                    <div>
-                        <NavLink to="/">
-                            Main
-                        </NavLink>
-                    </div>
-                    <div>
-                        <NavLink to="/people">
-                            People
-                        </NavLink>
-                    </div>
-                    <div>
-                        <NavLink to="/people/1">
-                            Detail pearson
-                        </NavLink>
-                    </div>
-                    <div>
-                        <NavLink to="/test">
-                            Test
-                        </NavLink>
-                    </div>
-                </div>
             </Content>
             <Footer/>
         </div>

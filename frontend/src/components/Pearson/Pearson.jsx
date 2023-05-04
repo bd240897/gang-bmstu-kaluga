@@ -2,17 +2,15 @@ import React, { useEffect } from "react";
 import './people_page.sass';
 
 
-function Pearson() {
+function Pearson({data}) {
 
     useEffect(() => {
 
     }, []);
 
-
-
     return (
         <div className="people__item pearson pearson--active p-2">
-            <img className="pearson__photo" src="https://placehold.jp/800x800.png" alt=""/>
+            <img className="pearson__photo" src={data.photo} alt=""/>
             <div className="pearson__body px-4 pt-2">
 
                 <div className="row py-1">
@@ -20,7 +18,7 @@ function Pearson() {
                         ФИО:
                     </div>
                     <div className="col-6">
-                        Иванов Иван
+                        {data.firstName}
                     </div>
                 </div>
 
@@ -29,7 +27,7 @@ function Pearson() {
                         Должность:
                     </div>
                     <div className="col-6">
-                        Капитан
+                        {data.level}
                     </div>
                 </div>
 
@@ -38,7 +36,7 @@ function Pearson() {
                         Год участия:
                     </div>
                     <div className="col-6">
-                        2023
+                        {data.year}
                     </div>
                 </div>
 

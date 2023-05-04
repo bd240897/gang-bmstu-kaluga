@@ -17,22 +17,53 @@ import {
 
 import {ref, getDownloadURL, uploadBytesResumable} from "firebase/storage";
 import Pearson from "../../components/Pearson/Pearson";
+import {Link} from "react-router-dom";
 
 
 function PeoplePage() {
 
+    const [people, setPeople] = useState([]);
+
+
+    // TODO it test just delete it
+    // useEffect(() => {
+    //     getBlogs();
+    // }, []);
+    //
+    // const getBlogs = async () => {
+    //     const blogRef = collection(db, "blogs");
+    //     console.log(blogRef);
+    //     const firstFour = query(blogRef, orderBy("title"), limit(4));
+    //     const docSnapshot = await getDocs(firstFour);
+    //     // распаковка
+    //     console.log(docSnapshot.docs.map((doc) => ({id: doc.id, ...doc.data()})))
+    // };
+
+    const fetchPeople = async () => {
+        // получим список участник из ФБ
+        let list = []
+
+        const blogRef = collection(db, "blogs")
+        const docSnapshot = await getDocs(blogRef);
+
+        docSnapshot.docs.forEach((doc) => {
+            list.push({id: doc.id, ...doc.data()});
+        });
+        setPeople(list);
+    };
+
+    const fetchPeopleMock = () => {
+        const docSnapshot = fetch("http://localhost:3004/get-people").then((response) => {
+            response.json().then(e => setPeople(e))
+        })
+    }
+
     useEffect(() => {
-        getBlogs();
+        // TODO mock
+        // fetchPeople()
+        fetchPeopleMock()
     }, []);
 
-    const getBlogs = async () => {
-        const blogRef = collection(db, "blogs");
-        console.log(blogRef);
-        const firstFour = query(blogRef, orderBy("title"), limit(4));
-        const docSnapshot = await getDocs(firstFour);
-        // распаковка
-        console.log(docSnapshot.docs.map((doc) => ({id: doc.id, ...doc.data()})))
-    };
 
     return (
         <>
@@ -70,16 +101,20 @@ function PeoplePage() {
                     <div className="people__body">
                         <div className="container-fluid">
                             <div className="row gy-3 gx-3">
-
-                                {[1, 2, 3, 4, 2].map(el => {
-                                        return (
-                                            <div className="col-4">
-                                                <Pearson/>
-                                            </div>
-                                        )
-                                    }
-                                )}
-
+                                {
+                                    people.length ?
+                                        people.map(el => {
+                                            return (
+                                                <div className="col-4">
+                                                    <Link style={{textDecoration: "none", color:"inherit"}} to={`/detail/${el.id}`}>
+                                                        <Pearson data={el}/>
+                                                    </Link>
+                                                </div>
+                                            )
+                                        }) :
+                                        // TODO make text
+                                        <div>Ничего нет</div>
+                                }
                             </div>
                         </div>
                     </div>

@@ -11,20 +11,23 @@ const PrivatePage = () => {
     const [email, setEmail] = useState(null);
     const [registered, setRegistered] = useState(null);
 
+
+    // TODO need or not
+    const getUserInformation = async () => {
+        const docRef = doc(db, "users", currentUser);
+        const docSnap = await getDoc(docRef);
+
+        if (docSnap.exists()) {
+            const userData = docSnap.data();
+            setEmail(userData.email);
+            setRegistered(userData.registeredAt.toDate().toISOString().substring(0,10));
+        } else {
+            console.log("This document does not exists");
+        }
+    };
+
+
     useEffect(() => {
-        const getUserInformation = async () => {
-            const docRef = doc(db, "users", currentUser);
-            const docSnap = await getDoc(docRef);
-
-            if (docSnap.exists()) {
-                const userData = docSnap.data();
-                setEmail(userData.email);
-                setRegistered(userData.registeredAt.toDate().toISOString().substring(0,10));
-            } else {
-                console.log("This document does not exists");
-            }
-        };
-
         getUserInformation();
     }, []);
 
