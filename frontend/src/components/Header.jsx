@@ -27,13 +27,13 @@ function Header() {
                             </Link>
 
                             {/*TODO add active link */}
-                            <Link to="/people" style={{ textDecoration: "none" }}>
+                            <Link to="/list" style={{ textDecoration: "none" }}>
                                 <li className="nav-item">
                                     <a className="nav-link" href="#">People</a>
                                 </li>
                             </Link>
 
-                            <Link to="/add" style={{ textDecoration: "none" }}>
+                            <Link to="/edit" style={{ textDecoration: "none" }}>
                                 <li className="nav-item">
                                     <a className="nav-link" href="#">Add pearson</a>
                                 </li>

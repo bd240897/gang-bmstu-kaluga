@@ -4,7 +4,7 @@ import './detail_page.sass';
 import {collection, doc, getDoc, getDocs} from "firebase/firestore";
 import {db} from "../../configs/firebase";
 
-function DetailPeoplePage() {
+function DetailPage() {
 
     const [pearson, setPearson] = useState(null);
 
@@ -21,7 +21,6 @@ function DetailPeoplePage() {
     }
 
     const fetchDetail = async () => {
-        // let id = "XvkETTDAaw89O49LrTBH";
         const docRef = doc(db, "blogs", id);
         const blogDetail = await getDoc(docRef);
         setPearson(blogDetail.data())
@@ -30,8 +29,8 @@ function DetailPeoplePage() {
 
     useEffect(() => {
         // TODO mock
-        // fetchDetailMock()
-        fetchDetail()
+        fetchDetailMock()
+        // fetchDetail()
     }, []);
 
     if (pearson) {
@@ -119,4 +118,4 @@ function DetailPeoplePage() {
 
 }
 
-export default DetailPeoplePage;
+export default DetailPage;

@@ -30,7 +30,7 @@ const categoryOption = [
   "Участник",
 ];
 
-const AddEditBlog = ({ user, setActive }) => {
+const EditPage = ({ user, setActive }) => {
 
   // хранит данные формы
   const [form, setForm] = useState(initialState);
@@ -232,4 +232,4 @@ const AddEditBlog = ({ user, setActive }) => {
   );
 };
 
-export default AddEditBlog;
+export default EditPage;

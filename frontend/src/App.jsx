@@ -4,7 +4,6 @@ import MainPage from "./pages/MainPage/MainPage";
 import {NavLink, Route, Routes, useNavigate, Navigate} from "react-router-dom"
 import Header from "./components/Header";
 import Footer from "./components/Footer";
-import DetailPeoplePage from "./pages/DetailPeoplePage/DetailPeoplePage";
 import TestPage from "./pages/TestPage";
 import Content from "./components/Content";
 import PrivatePage from "./pages/PrivatePage/PrivatePage";
@@ -13,12 +12,13 @@ import Login from "./pages/Login";
 
 import React, {useContext} from 'react';
 import {AuthContext, AuthProvider} from "./context/AuthContext";
-import AddPearson from "./pages/AddPearson/AddPearson";
 import NotFoundPage from "./pages/NotFoundPage";
 import {toast, ToastContainer} from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import PeoplePage from "./pages/PeoplePage/PeoplePage";
 import NavigateError from "./components/NavigateError";
+import ListPage from "./pages/ListPage/ListPage";
+import DetailPage from "./pages/DetailPage/DetailPage";
+import EditPage from "./pages/EditPage/EditPage";
 
 function App() {
 
@@ -30,6 +30,15 @@ function App() {
         return <Navigate to="/login" />
     }
 
+    /*
+
+    MainPage
+    ListPage
+    DetailPage
+    EditPage
+
+     */
+
     return (
         <div className="App">
             <Header/>
@@ -37,11 +46,11 @@ function App() {
                 <ToastContainer position="top-center"/>
                 <Routes>
                     <Route path="/" element={<MainPage/>}/>
-                    <Route path="/people" element={<PeoplePage/>}/>
-                    <Route path="/detail/:id" element={<DetailPeoplePage/>}/>
+                    <Route path="/list" element={<ListPage/>}/>
+                    <Route path="/detail/:id" element={<DetailPage/>}/>
+                    <Route path='/edit' element={<EditPage/>}/>
                     <Route path='/login' element={<Login/>}/>
                     <Route path='/register' element={<Register/>}/>
-                    <Route path='/add' element={<AddPearson/>}/>
                     <Route path="/test" element={<TestPage/>}/>
 
                     <Route path='/private' element={

@@ -20,24 +20,13 @@ import Pearson from "../../components/Pearson/Pearson";
 import {Link} from "react-router-dom";
 
 
-function PeoplePage() {
+function ListPage() {
 
     const [people, setPeople] = useState([]);
 
 
     // TODO it test just delete it
-    // useEffect(() => {
-    //     getBlogs();
-    // }, []);
-    //
-    // const getBlogs = async () => {
-    //     const blogRef = collection(db, "blogs");
-    //     console.log(blogRef);
-    //     const firstFour = query(blogRef, orderBy("title"), limit(4));
-    //     const docSnapshot = await getDocs(firstFour);
-    //     // распаковка
-    //     console.log(docSnapshot.docs.map((doc) => ({id: doc.id, ...doc.data()})))
-    // };
+
 
     const fetchPeople = async () => {
         // получим список участник из ФБ
@@ -60,8 +49,8 @@ function PeoplePage() {
 
     useEffect(() => {
         // TODO mock
-        fetchPeople()
-        // fetchPeopleMock()
+        // fetchPeople()
+        fetchPeopleMock()
     }, []);
 
 
@@ -126,4 +115,4 @@ function PeoplePage() {
     )
 }
 
-export default PeoplePage;
+export default ListPage;
