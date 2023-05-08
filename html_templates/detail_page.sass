@@ -7,41 +7,43 @@ $font_size_h1: 15px
 $font_size_h2: 15px
 $font_size_h3 : 15px
 
-
-.detail
+.detail-title
   background-color: $section_color_1
-  &__photo
-  &__photo img
+
+.detail-card
+  background-color: $section_color_2
+
+.detail-description
+  background-color: $section_color_1
+
+
+.pearson-photo
+  .pearson-photo__row
+    width: 100%
+    display: flex
+    justify-content: center
+
+  .pearson-photo__col
+    width: 80%
+
+  .pearson-photo__col img
     margin: auto 0
     width: 100%
     max-width: 800px
     height: auto
     border-radius: 15px
 
-.detail__photo__row
-  width: 100%
-  display: flex
-  justify-content: center
 
-.detail__photo__col
-  width: 80%
+.pearson-content
 
-.detail__photo__col img
-  margin: auto 0
-  width: 100%
-  max-width: 800px
-  height: auto
-  border-radius: 15px
+  .pearson-content__row
+    height: 100%
+    display: flex
+    align-items: center
 
-.people-content__row
-  height: 100%
-  display: flex
-  //justify-content: center
-  align-items: center
+  .pearson-content__col
 
-.people-content__col
-
-.year, .role
-  font-size: 26px
+  .pearson-content__year, .pearson-content__role
+    font-size: 26px
 
 

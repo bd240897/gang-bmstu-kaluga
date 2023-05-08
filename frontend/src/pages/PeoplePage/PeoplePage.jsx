@@ -60,8 +60,8 @@ function PeoplePage() {
 
     useEffect(() => {
         // TODO mock
-        // fetchPeople()
-        fetchPeopleMock()
+        fetchPeople()
+        // fetchPeopleMock()
     }, []);
 
 

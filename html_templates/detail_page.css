@@ -1,35 +1,32 @@
 @charset "UTF-8";
 /* Блоки */
-.detail {
+.detail-title {
   background-color: #edf7ff; }
-  .detail__photo img {
-    margin: auto 0;
-    width: 100%;
-    max-width: 800px;
-    height: auto;
-    border-radius: 15px; }
 
-.detail__photo__row {
+.detail-card {
+  background-color: white; }
+
+.detail-description {
+  background-color: #edf7ff; }
+
+.pearson-photo .pearson-photo__row {
   width: 100%;
   display: flex;
   justify-content: center; }
-
-.detail__photo__col {
+.pearson-photo .pearson-photo__col {
   width: 80%; }
-
-.detail__photo__col img {
+.pearson-photo .pearson-photo__col img {
   margin: auto 0;
   width: 100%;
   max-width: 800px;
   height: auto;
   border-radius: 15px; }
 
-.people-content__row {
+.pearson-content .pearson-content__row {
   height: 100%;
   display: flex;
   align-items: center; }
-
-.year, .role {
+.pearson-content .pearson-content__year, .pearson-content .pearson-content__role {
   font-size: 26px; }
 
 /*# sourceMappingURL=detail_page.css.map */
