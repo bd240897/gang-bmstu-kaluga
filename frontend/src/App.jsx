@@ -25,20 +25,6 @@ function App() {
     // получим текущего юзера
     const {currentUser} = useContext(AuthContext);
 
-    const navigateToLogin = () => {
-        toast.info("Страница доступна только вошедшим пользователям");
-        return <Navigate to="/login" />
-    }
-
-    /*
-
-    MainPage
-    ListPage
-    DetailPage
-    EditPage
-
-     */
-
     return (
         <div className="App">
             <Header/>

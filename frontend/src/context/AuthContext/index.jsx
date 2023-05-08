@@ -3,6 +3,8 @@ import { getAuth, onAuthStateChanged } from "firebase/auth";
 
 export const AuthContext = createContext();
 
+
+// TODO unused - delete?
 export const AuthProvider = ({ children }) => {
 
     const [currentUser, setCurrentUser] = useState(null);
