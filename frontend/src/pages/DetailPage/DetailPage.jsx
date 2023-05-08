@@ -40,7 +40,7 @@ function DetailPage() {
                     <div className="container">
                         <div className="row">
                             <div className="col-2 d-flex align-items-center">
-                                <button onClick={()=>navigate("/people")} className="detail-title__btn btn btn-success w-100">назад</button>
+                                <button onClick={()=>navigate("/list")} className="detail-title__btn btn btn-success w-100">назад</button>
                             </div>
                             <div className="col-10">
                                 <h1 className="detail-title__header  text-center pb-5 pt-5">Подробная информация об
