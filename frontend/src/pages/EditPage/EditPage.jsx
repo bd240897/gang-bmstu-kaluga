@@ -139,96 +139,100 @@ const EditPage = ({ user, setActive }) => {
   };
 
   return (
-    <div className="container-fluid mb-4">
-      <div className="container">
+      <>
+        <section className="edit py-2">
+          <div className="container-fluid mb-4">
+            <div className="container">
+              <div className="row h-100 justify-content-center align-items-center">
+                <div className="col-10 col-md-8 col-lg-6 border border-success  rounded rounded-5">
 
-        <div className="row h-100 justify-content-center align-items-center">
-          <div className="col-10 col-md-8 col-lg-6">
+                  <form className="row blog-form" onSubmit={handleSubmit}>
+                    <h1 className="text-center py-3">Добавить нового участника</h1>
 
-            <form className="row blog-form" onSubmit={handleSubmit}>
-              <div className="col-12 py-3">
-                <input
-                  type="text"
-                  className="form-control input-text-box"
-                  placeholder="firstName"
-                  name="firstName"
-                  value={firstName}
-                  onChange={handleInputChange}
-                />
+                    <div className="col-12 py-3">
+                      <input
+                          type="text"
+                          className="form-control input-text-box"
+                          placeholder="firstName"
+                          name="firstName"
+                          value={firstName}
+                          onChange={handleInputChange}
+                      />
+                    </div>
+
+                    <div className="col-12 py-3">
+                      <input
+                          type="text"
+                          className="form-control input-text-box"
+                          placeholder="lastName"
+                          name="lastName"
+                          value={lastName}
+                          onChange={handleInputChange}
+                      />
+                    </div>
+
+                    <div className="col-12 py-3">
+                      <input
+                          type="text"
+                          className="form-control input-text-box"
+                          placeholder="year"
+                          name="year"
+                          value={year}
+                          onChange={handleInputChange}
+                      />
+                    </div>
+
+
+                    <div className="col-12 py-3">
+                      <select
+                          onChange={onCategoryChange}
+                          className="catg-dropdown"
+                      >
+                        <option>Выбирите категорию участника</option>
+                          <option>Выбирите категорию участника </option>
+                          {categoryOption.map((option, index) => (
+                              <option value={option || ""} key={index}>
+                                  {option}
+                              </option>
+                          ))}
+                      </select>
+                    </div>
+
+                    <div className="col-12 py-3">
+                                <textarea
+                                    className="form-control description-box"
+                                    placeholder="Description"
+                                    value={description}
+                                    name="description"
+                                    onChange={handleInputChange}
+                                />
+                    </div>
+
+                    <div className="mb-3">
+                      <input
+                          type="file"
+                          className="form-control"
+                          onChange={(e) => setFile(e.target.files[0])}
+                      />
+                    </div>
+
+                    <div className="col-12 py-3 text-center">
+                      <button
+                          className="btn btn-add btn-success"
+                          type="submit"
+                          disabled={progress !== null && progress < 100}
+                      >
+                        Отправить
+                      </button>
+                    </div>
+
+                  </form>
+                </div>
               </div>
-
-              <div className="col-12 py-3">
-                <input
-                    type="text"
-                    className="form-control input-text-box"
-                    placeholder="lastName"
-                    name="lastName"
-                    value={lastName}
-                    onChange={handleInputChange}
-                />
-              </div>
-
-              <div className="col-12 py-3">
-                <input
-                    type="text"
-                    className="form-control input-text-box"
-                    placeholder="year"
-                    name="year"
-                    value={year}
-                    onChange={handleInputChange}
-                />
-              </div>
-
-
-              <div className="col-12 py-3">
-                <select
-                  // value={category}
-                  onChange={onCategoryChange}
-                  className="catg-dropdown"
-                >
-                  <option>Выбирите категорию участника </option>
-                  {categoryOption.map((option, index) => (
-                    <option value={option || ""} key={index}>
-                      {option}
-                    </option>
-                  ))}
-                </select>
-              </div>
-
-              <div className="col-12 py-3">
-                <textarea
-                  className="form-control description-box"
-                  placeholder="Description"
-                  value={description}
-                  name="description"
-                  onChange={handleInputChange}
-                />
-              </div>
-
-              <div className="mb-3">
-                <input
-                  type="file"
-                  className="form-control"
-                  onChange={(e) => setFile(e.target.files[0])}
-                />
-              </div>
-
-              <div className="col-12 py-3 text-center">
-                {/* TODO block bytton if file not loaded*/}
-                <button
-                  className="btn btn-add btn-success"
-                  type="submit"
-                  disabled={progress !== null && progress < 100}
-                >
-                  Отправить
-                </button>
-              </div>
-
-            </form>
+            </div>
           </div>
-        </div>
-      </div>
-    </div>
+        </section>
+      </>
   );
 };
 

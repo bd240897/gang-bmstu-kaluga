@@ -1,0 +1,19 @@
+@charset "UTF-8";
+/* Блоки */
+.detail-title {
+  background-color: #edf7ff; }
+
+.detail-card {
+  background-color: white; }
+
+.detail-description {
+  background-color: #edf7ff; }
+
+.account-exists {
+  font-size: 12px; }
+  .account-exists .account-exists__link {
+    color: #293462;
+    font-weight: bold;
+    cursor: pointer; }
+
+/*# sourceMappingURL=register_page.css.map */

@@ -1,0 +1,7 @@
+{
+"version": 3,
+"mappings": ";;AASA,eAAe;EACb,SAAS,EAAE,IAAI;EAIf,qCAAqB;IACnB,KAAK,EAAE,OAAO;IACd,WAAW,EAAE,IAAI;IACjB,MAAM,EAAE,OAAO",
+"sources": ["register_page.sass"],
+"names": [],
+"file": "register_page.css"
+}

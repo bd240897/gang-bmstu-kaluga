@@ -7,8 +7,7 @@ import Footer from "./components/Footer";
 import TestPage from "./pages/TestPage";
 import Content from "./components/Content";
 import PrivatePage from "./pages/PrivatePage/PrivatePage";
-import Register from "./pages/Register";
-import Login from "./pages/Login";
+import Login from "./pages/Login/Login";
 
 import React, {useContext} from 'react';
 import {AuthContext, AuthProvider} from "./context/AuthContext";
@@ -19,6 +18,7 @@ import NavigateError from "./components/NavigateError";
 import ListPage from "./pages/ListPage/ListPage";
 import DetailPage from "./pages/DetailPage/DetailPage";
 import EditPage from "./pages/EditPage/EditPage";
+import Register from "./pages/Register/Register";
 
 function App() {
 
