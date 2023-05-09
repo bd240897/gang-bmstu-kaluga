@@ -29,8 +29,8 @@ function DetailPage() {
 
     useEffect(() => {
         // TODO mock
-        fetchDetailMock()
-        // fetchDetail()
+        // fetchDetailMock()
+        fetchDetail()
     }, []);
 
     if (pearson) {
@@ -53,7 +53,7 @@ function DetailPage() {
                 <section className="detail-card py-3">
                     <div className="container">
 
-                        <h2 className="detail-card__header text-center my-4">{`${pearson.firstName} ${pearson.secondName}`}</h2>
+                        <h2 className="detail-card__header text-center my-4">{`${pearson.firstName} ${pearson.lastName}`}</h2>
 
                         <div className="detail-card__body pearson-detail">
 
@@ -83,7 +83,7 @@ function DetailPage() {
                                             </div>
                                             <div className="pearson-content__role">
                                                 <span className="fw-bold">Роль в команде:  </span>
-                                                <span className="">участник</span>
+                                                <span className="">{`${pearson.category}`}</span>
                                             </div>
                                         </div>
                                     </div>

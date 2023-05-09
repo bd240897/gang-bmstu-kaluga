@@ -44,7 +44,7 @@ const EditPage = ({ user, setActive }) => {
   // TODO unused
   // const { id } = useParams();
 
-  // const navigate = useNavigate();
+  const navigate = useNavigate();
 
   // распакуем стейт для удобства
   // TODO category!!!!!!!!!!!!!!!!!!!! lost it
@@ -84,7 +84,7 @@ const EditPage = ({ user, setActive }) => {
           // это стандартная функция - тут иде как колбек
           getDownloadURL(uploadTask.snapshot.ref).then((downloadUrl) => {
             toast.info("Image upload to firebase successfully");
-            setForm((prev) => ({ ...prev, imgUrl: downloadUrl }));
+            setForm((prev) => ({ ...prev, photo: downloadUrl }));
           });
         }
       );
@@ -111,9 +111,7 @@ const EditPage = ({ user, setActive }) => {
 
     e.preventDefault();
 
-    console.log(form)
-
-    // TOTO uncommit
+    // TODO uncommit
     if (firstName && lastName) { // TODO category && tags && title && description && trending
       try
       {
@@ -134,8 +132,7 @@ const EditPage = ({ user, setActive }) => {
       }
     }
 
-    // TODO used or delete
-    // navigate("/");
+    navigate("/list");
   };
 
   return (
@@ -186,7 +183,7 @@ const EditPage = ({ user, setActive }) => {
                     <div className="col-12 py-3">
                       <select
                           onChange={onCategoryChange}
-                          className="catg-dropdown"
+                          className="form-select"
                       >
                         <option>Выбирите категорию участника</option>
                           <option>Выбирите категорию участника </option>

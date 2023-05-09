@@ -33,7 +33,8 @@ const Register = () => {
     // }
 
 
-    const handleSubmit = () => {
+    const handleSubmit = (e) => {
+        e.preventDefault()
         registerUser(email, password)
             .then((userCredential) => {
                 const user = userCredential.user
@@ -42,10 +43,12 @@ const Register = () => {
                     registeredAt: Timestamp.fromDate(new Date()),
                 });
                 alert('User created successfully!')
+                navigate("/")
             })
             .catch((error) => {
                 alert('Something went wrong!');
                 const errorCode = error.code;
+                console.log(error);
                 console.log(errorCode);
             });
     }

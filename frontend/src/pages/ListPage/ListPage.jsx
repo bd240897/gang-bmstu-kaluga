@@ -49,8 +49,8 @@ function ListPage() {
 
     useEffect(() => {
         // TODO mock
-        // fetchPeople()
-        fetchPeopleMock()
+        fetchPeople()
+        // fetchPeopleMock()
     }, []);
 
 

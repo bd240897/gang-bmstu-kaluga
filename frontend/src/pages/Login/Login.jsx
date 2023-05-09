@@ -1,12 +1,16 @@
-import React, { useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import {useNavigate} from "react-router-dom";
-import { loginUser } from '../../configs/firebase';
+import {db, loginUser} from '../../configs/firebase';
 import './login_page.sass';
+import {doc, getDoc} from "firebase/firestore";
+import {AuthContext} from "../../context/AuthContext";
 
 const Login = () => {
 
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
+
+    const {currentUser, setCurrentUser, currentUserEmail, setCurrentUserEmail} = useContext(AuthContext);
 
     const navigate = useNavigate();
 
@@ -18,15 +22,18 @@ const Login = () => {
         setPassword(event.target.value);
     };
 
-    const handleSubmit = () => {
+
+    const handleSubmit = (e) => {
+        e.preventDefault()
         loginUser(email, password)
             .then((userCredential) => {
                 alert('User signed in');
-                navigate('/home');
+                navigate("/")
             })
             .catch((error) => {
                 alert('Something went wrong!');
                 const errorCode = error.code;
+                console.log(error);
                 console.log(errorCode);
             });
     };

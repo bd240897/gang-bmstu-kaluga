@@ -1,13 +1,16 @@
 import React, { createContext, useState, useEffect } from 'react';
 import { getAuth, onAuthStateChanged } from "firebase/auth";
+import {doc, getDoc} from "firebase/firestore";
+import {db} from "../../configs/firebase";
 
 export const AuthContext = createContext();
 
 
-// TODO unused - delete?
+// используетсяв index.js для того чтоб прокидывать пользователя везде
 export const AuthProvider = ({ children }) => {
 
     const [currentUser, setCurrentUser] = useState(null);
+    const {currentUserEmail, setCurrentUserEmail} = useState(null);
 
     const auth = getAuth();
 
@@ -22,8 +25,9 @@ export const AuthProvider = ({ children }) => {
         });
     }, []);
 
+
     return (
-        <AuthContext.Provider value={{ currentUser }}>
+        <AuthContext.Provider value={{ currentUser, setCurrentUser, currentUserEmail, setCurrentUserEmail}}>
             {children}
         </AuthContext.Provider>
     );

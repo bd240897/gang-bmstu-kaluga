@@ -9,8 +9,15 @@ function Pearson({data}) {
     }, []);
 
     return (
-        <div className="people__item pearson pearson--active p-2">
-            <img className="pearson__photo" src={data.photo} alt=""/>
+        <div className="people__item pearson pearson--active p-2 h-100">
+            {
+                data.photo ?
+                    <img className="pearson__photo" src={data.photo} alt=""/>
+                    :
+                    <img className="pearson__photo"
+                         src="https://placehold.jp/800x800.png" alt=""/>
+            }
+
             <div className="pearson__body px-4 pt-2">
 
                 <div className="row py-1">
@@ -27,7 +34,7 @@ function Pearson({data}) {
                         Должность:
                     </div>
                     <div className="col-6">
-                        {data.level}
+                        {data.category}
                     </div>
                 </div>
 
